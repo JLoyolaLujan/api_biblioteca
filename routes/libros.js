@@ -10,7 +10,7 @@ const errorHandler = require("../middleware/errorHandler");
 /*
 get /libros 
 get /libros/:id 
-post /libros --> 
+post /libros 
 put /libros/:id 
 delete /libros/:id 
 */
