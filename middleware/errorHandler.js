@@ -11,7 +11,7 @@ const errorHandler = (err, req, res, next) => {
     };
 
     // devuelvo respuesta
-    return [statusCode, errorResponse];
+    res.status(statusCode).json(errorResponse);
 };
 
 // exporto

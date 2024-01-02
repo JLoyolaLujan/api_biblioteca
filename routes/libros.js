@@ -5,8 +5,6 @@ const librosRouter = express.Router();
 
 const Libro = require("../models/Libros");
 
-const errorHandler = require("../middleware/errorHandler");
-
 /*
 get /libros 
 get /libros/:id 
@@ -21,8 +19,7 @@ librosRouter.get("/", async (req, res) => {
         const libros = await Libro.find();
         res.json(libros);
     } catch (error) {
-        const handler = errorHandler(error);
-        res.status(handler[0]).json(handler[1]);
+        res.status(500).json({error:"error"});
     }
 });
 
@@ -43,8 +40,7 @@ librosRouter.get("/:id", async (req, res) => {
 
         res.json(libro);
     } catch (error) {
-        const handler = errorHandler(error);
-        res.status(handler[0]).json(handler[1]);
+        res.status(500).json({error:"error"});
     }
 });
 
@@ -57,8 +53,7 @@ librosRouter.post("/", async (req, res) => {
         res.json(nuevoLibro); 
     }
     catch (error) {
-        const handler = errorHandler(error);
-        res.status(handler[0]).json(handler[1]);
+        res.status(500).json({error:"error"});
     }
 });
 
@@ -73,8 +68,7 @@ librosRouter.put("/:id", async (req, res) => {
         });
         res.json(libro);
     } catch (error) {
-        const handler = errorHandler(error);
-        res.status(handler[0]).json(handler[1]);
+        res.status(500).json({error:"error"});
     }
 });
 
@@ -85,9 +79,7 @@ librosRouter.delete("/:id", async (req, res) => {
         await Libro.findByIdAndDelete(req.params.id); 
         res.json({ message: "libro eliminado correctamente" });
     } catch (error) {
-        // res.status(500).json({error:"error"});
-        const handler = errorHandler(error);
-        res.status(handler[0]).json(handler[1]);
+        res.status(500).json({error:"error"});
     }
 });
 
